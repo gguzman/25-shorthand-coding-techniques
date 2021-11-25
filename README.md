@@ -338,3 +338,179 @@ You can even assign your own variable names:
 ```js
 const { store, form, loading, errors, entity:contact } = this.props;
 ```
+
+## 14. Multi-line String Shorthand
+If you have ever found yourself in need of writing multi-line strings in code, this is how you would write it:
+
+Longhand:
+
+```js
+const lorem = 'Lorem ipsum dolor sit amet, consectetur\n\t'
+    + 'adipisicing elit, sed do eiusmod tempor incididunt\n\t'
+    + 'ut labore et dolore magna aliqua. Ut enim ad minim\n\t'
+    + 'veniam, quis nostrud exercitation ullamco laboris\n\t'
+    + 'nisi ut aliquip ex ea commodo consequat. Duis aute\n\t'
+    + 'irure dolor in reprehenderit in voluptate velit esse.\n\t'
+```
+
+But there is an easier way. Just use backticks.
+
+Shorthand:
+
+```js
+const lorem = `Lorem ipsum dolor sit amet, consectetur
+    adipisicing elit, sed do eiusmod tempor incididunt
+    ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris
+    nisi ut aliquip ex ea commodo consequat. Duis aute
+    irure dolor in reprehenderit in voluptate velit esse.`
+```
+
+## 15. Spread Operator Shorthand
+The **spread operator**, introduced in ES6, has several use cases that make JavaScript code more efficient and fun to use. It can be used to replace certain array functions. The spread operator is simply a series of three dots.
+
+Longhand
+
+```js
+// joining arrays
+const odd = [1, 3, 5];
+const nums = [2 ,4 , 6].concat(odd);
+
+// cloning arrays
+const arr = [1, 2, 3, 4];
+const arr2 = arr.slice()
+```
+
+Shorthand:
+
+```js
+// joining arrays
+const odd = [1, 3, 5 ];
+const nums = [2 ,4 , 6, ...odd];
+console.log(nums); // [ 2, 4, 6, 1, 3, 5 ]
+
+// cloning arrays
+const arr = [1, 2, 3, 4];
+const arr2 = [...arr];
+```
+
+Unlike the `concat()` function, you can use the spread operator to insert an array anywhere inside another array.
+
+```js
+const odd = [1, 3, 5 ];
+const nums = [2, ...odd, 4 , 6];
+```
+
+You can also combine the spread operator with ES6 destructuring notation:
+
+```js
+const { a, b, ...z } = { a: 1, b: 2, c: 3, d: 4 };
+console.log(a) // 1
+console.log(b) // 2
+console.log(z) // { c: 3, d: 4 }
+```
+
+## 16. Mandatory Parameter Shorthand
+By default, JavaScript will set function parameters to `undefined` if they are not passed a value. Some other languages will throw a warning or error. To enforce parameter assignment, you can use an `if` statement to throw an error if `undefined`, or you can take advantage of the ‘Mandatory parameter shorthand’.
+
+Longhand:
+
+```js
+function foo(bar) {
+  if(bar === undefined) {
+    throw new Error('Missing parameter!');
+  }
+  return bar;
+}
+```
+
+Shorthand:
+
+```js
+mandatory = () => {
+  throw new Error('Missing parameter!');
+}
+
+foo = (bar = mandatory()) => {
+  return bar;
+}
+```
+
+## 17. Array.find Shorthand
+If you have ever been tasked with writing a find function in plain JavaScript, you would probably have used a for `loop`. In ES6, a new array function named `find()` was introduced.
+
+Longhand:
+
+```js
+const pets = [
+  { type: 'Dog', name: 'Max'},
+  { type: 'Cat', name: 'Karl'},
+  { type: 'Dog', name: 'Tommy'},
+]
+
+function findDog(name) {
+  for(let i = 0; i<pets.length; ++i) {
+    if(pets[i].type === 'Dog' && pets[i].name === name) {
+      return pets[i];
+    }
+  }
+}
+```
+
+Shorthand:
+
+```js
+pet = pets.find(pet => pet.type ==='Dog' && pet.name === 'Tommy');
+console.log(pet); // { type: 'Dog', name: 'Tommy' }
+```
+
+## 18. Object [key] Shorthand
+Did you know that `Foo.bar` can also be written as `Foo['bar']`? At first, there doesn’t seem to be a reason why you should write it like that. However, this notation gives you the building block for writing re-usable code.
+
+Consider this simplified example of a validation function:
+
+```js
+function validate(values) {
+  if(!values.first)
+    return false;
+  if(!values.last)
+    return false;
+  return true;
+}
+
+console.log(validate({first:'Bruce',last:'Wayne'})); // true
+```
+
+This function does its job perfectly. However, consider a scenario where you have very many forms where you need to apply the validation but with different fields and rules. Wouldn’t it be nice to build a generic validation function that can be configured at runtime?
+
+Shorthand:
+
+```js
+// object validation rules
+const schema = {
+  first: {
+    required:true
+  },
+  last: {
+    required:true
+  }
+}
+
+// universal validation function
+const validate = (schema, values) => {
+  for(field in schema) {
+    if(schema[field].required) {
+      if(!values[field]) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+
+console.log(validate(schema, {first:'Bruce'})); // false
+console.log(validate(schema, {first:'Bruce',last:'Wayne'})); // true
+```
+
+Now we have a validate function we can reuse in all forms without needing to write a custom validation function for each.
