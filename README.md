@@ -196,3 +196,50 @@ for (let i = 0; i < 1e7; i++) {}
 1e4 === 10000;
 1e5 === 100000;
 ```
+
+## 8. Object Property Shorthand
+Defining object literals in JavaScript makes life much easier. ES6 provides an even easier way of assigning properties to objects. If the variable name is the same as the object key, you can take advantage of the shorthand notation.
+
+Longhand:
+
+```js
+const x = 1920, y = 1080;
+const obj = { x:x, y:y };
+```
+
+Shorthand:
+
+```js
+const obj = { x, y };
+```
+
+## 9. Arrow Functions Shorthand
+Classical functions are easy to read and write in their plain form, but they do tend to become a bit verbose and confusing once you start nesting them in other function calls.
+
+Longhand:
+
+```js
+function sayHello(name) {
+  console.log('Hello', name);
+}
+
+setTimeout(function() {
+  console.log('Loaded')
+}, 2000);
+
+list.forEach(function(item) {
+  console.log(item);
+});
+```
+
+Shorthand:
+
+```js
+sayHello = name => console.log('Hello', name);
+
+setTimeout(() => console.log('Loaded'), 2000);
+
+list.forEach(item => console.log(item));
+```
+
+It’s important to note that the value of `this` inside an arrow function is determined differently than for longhand functions, so the two examples are not strictly equivalent. See [this article on arrow function syntax](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/) for more details.
