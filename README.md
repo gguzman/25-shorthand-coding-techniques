@@ -57,3 +57,20 @@ console.log(variable2); // prints foo
 ```
 
 Do note that if you set `variable1` to `false` or `0`, the value `bar` will be assigned.
+
+## 3. Declaring Variables Shorthand
+
+It’s good practice to declare your variable assignments at the beginning of your functions. This shorthand method can save you lots of time and space when declaring multiple variables at the same time.
+
+Longhand:
+```js
+let x;
+let y;
+let z = 3;
+```
+
+Shorthand:
+
+```js
+let x, y, z=3;
+```
