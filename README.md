@@ -653,3 +653,5 @@ console.log(arr);
 [ 'John', 'Jane', 'Peter' ]
 **/
 ```
+
+Reference: https://www.sitepoint.com/shorthand-javascript-techniques/
