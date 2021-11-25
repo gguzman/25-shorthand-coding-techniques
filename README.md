@@ -514,3 +514,142 @@ console.log(validate(schema, {first:'Bruce',last:'Wayne'})); // true
 ```
 
 Now we have a validate function we can reuse in all forms without needing to write a custom validation function for each.
+
+## 19. Double Bitwise NOT Shorthand
+Bitwise operators are one of those features you learn about in beginner JavaScript tutorials and you never get to implement them anywhere. Besides, who wants to work with ones and zeroes if you are not dealing with binary?
+
+There is, however, a very practical use case for the Double Bitwise NOT operator. You can use it as a replacement for `Math.floor()`. The advantage of the Double Bitwise NOT operator is that it performs the same operation much faster. You can read more about Bitwise operators [here](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators).
+
+Longhand:
+
+```js
+Math.floor(4.9) === 4  //true
+```
+
+Shorthand:
+
+```js
+~~4.9 === 4  //true
+```
+
+## 20. Exponent Power Shorthand
+Shorthand for a Math exponent power function:
+
+Longhand:
+
+```js
+Math.pow(2,3); // 8
+Math.pow(2,2); // 4
+Math.pow(4,3); // 64
+```
+
+Shorthand:
+
+```js
+2**3 // 8
+2**4 // 4
+4**3 // 64
+```
+
+## 21. Converting a String into a Number
+There are times when your code receives data that comes in String format but needs to processed in Numerical format. It’s not a big deal, we can perform a quick conversion.
+
+Longhand:
+
+```js
+const num1 = parseInt("100");
+const num2 =  parseFloat("100.01");
+```
+
+Shorthand:
+
+```js
+const num1 = +"100"; // converts to int data type
+const num2 =  +"100.01"; // converts to float data type
+```
+
+## 22. Object Property Assignment
+Consider the following piece of code:
+
+```js
+let fname = { firstName : 'Black' };
+let lname = { lastName : 'Panther'}
+```
+
+How would you merge them into one object? One way is to write a function that copies data from the second object onto the first one. Unfortunately, this might not be what you want — you may need to create an entirely new object without mutating any of the existing objects. The easiest way is to use the `Object.assign` function introduced in ES6:
+
+```js
+let full_names = Object.assign(fname, lname);
+```
+
+You can also use the object destruction notation introduced in ES8:
+
+```js
+let full_names = {...fname, ...lname};
+```
+
+There is no limit to the number of object properties you can merge. If you do have objects with identical property names, values will be overwritten in the order they were merged.
+
+## 23. Bitwise IndexOf Shorthand
+When performing a lookup using an array, the `indexOf()` function is used to retrieve the position of the item you are looking for. If the item is not found, the value `-1` is returned. In JavaScript, `0` is considered ‘falsy’, while numbers greater or lesser than `0` are considered ‘truthy’. As a result, one has to write the correct code like this.
+
+Longhand:
+
+```js
+if(arr.indexOf(item) > -1) { // Confirm item IS found
+
+}
+
+if(arr.indexOf(item) === -1) { // Confirm item IS NOT found
+
+}
+```
+
+Shorthand:
+
+```js
+if(~arr.indexOf(item)) { // Confirm item IS found
+
+}
+
+if(!~arr.indexOf(item)) { // Confirm item IS NOT found
+
+}
+```
+
+The `bitwise(~)` operator will return a truthy value for anything but `-1`. Negating it is as simple as doing `!~`. Alternatively, we can also use the `includes()` function:
+
+```js
+if(arr.includes(item)) { // Returns true if the item exists, false if it doesn't
+
+}
+```
+
+## 24. Object.entries()
+This is a feature that was introduced in ES8 that allows you to convert a literal object into a key/value pair array. See the example below:
+
+```js
+const credits = { producer: 'John', director: 'Jane', assistant: 'Peter' };
+const arr = Object.entries(credits);
+console.log(arr);
+
+/** Output:
+[ [ 'producer', 'John' ],
+  [ 'director', 'Jane' ],
+  [ 'assistant', 'Peter' ]
+]
+**/
+```
+
+## 25. Object.values()
+This is also a new feature introduced in ES8 that performs a similar function to `Object.entries()`, but without the key part:
+
+```js
+const credits = { producer: 'John', director: 'Jane', assistant: 'Peter' };
+const arr = Object.values(credits);
+console.log(arr);
+
+/** Output:
+[ 'John', 'Jane', 'Peter' ]
+**/
+```
