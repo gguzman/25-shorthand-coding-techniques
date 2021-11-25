@@ -174,3 +174,25 @@ Shorthand:
 ```js
 const dbHost = process.env.DB_HOST || 'localhost';
 ```
+## 7. Decimal Base Exponents
+You may have seen this one around. It’s essentially a fancy way to write numbers without the trailing zeros. For example, 1e7 essentially means 1 followed by 7 zeros. It represents a decimal base (which JavaScript interprets as a float type) equal to 10,000,000.
+
+Longhand:
+
+```js
+for (let i = 0; i < 10000; i++) {}
+```
+
+Shorthand:
+
+```js
+for (let i = 0; i < 1e7; i++) {}
+
+// All the below will evaluate to true
+1e0 === 1;
+1e1 === 10;
+1e2 === 100;
+1e3 === 1000;
+1e4 === 10000;
+1e5 === 100000;
+```
