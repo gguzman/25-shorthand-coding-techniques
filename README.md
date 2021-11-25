@@ -288,3 +288,53 @@ volume = (l, w = 3, h = 4 ) => (l * w * h);
 
 volume(2) //output: 24
 ```
+
+## 12. Template Literals
+Aren’t you tired of using `' + '` to concatenate multiple variables into a string? Isn’t there a much easier way of doing this? If you are able to use ES6, then you are in luck. All you need to do is use is the backtick, and `${}` to enclose your variables.
+
+Longhand:
+
+```js
+const welcome = 'You have logged in as ' + first + ' ' + last + '.'
+
+const db = 'http://' + host + ':' + port + '/' + database;
+```
+
+Shorthand:
+
+```js
+const welcome = `You have logged in as ${first} ${last}`;
+
+const db = `http://${host}:${port}/${database}`;
+```
+
+## 13. Destructuring Assignment Shorthand
+If you are working with any popular web framework, there are high chances you will be using arrays or data in the form of object literals to pass information between components and APIs. Once the data object reaches a component, you’ll need to unpack it.
+
+Longhand:
+
+```js
+const observable = require('mobx/observable');
+const action = require('mobx/action');
+const runInAction = require('mobx/runInAction');
+
+const store = this.props.store;
+const form = this.props.form;
+const loading = this.props.loading;
+const errors = this.props.errors;
+const entity = this.props.entity;
+```
+
+Shorthand:
+
+```js
+import { observable, action, runInAction } from 'mobx';
+
+const { store, form, loading, errors, entity } = this.props;
+```
+
+You can even assign your own variable names:
+
+```js
+const { store, form, loading, errors, entity:contact } = this.props;
+```
