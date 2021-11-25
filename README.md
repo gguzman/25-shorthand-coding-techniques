@@ -74,3 +74,42 @@ Shorthand:
 ```js
 let x, y, z=3;
 ```
+
+## 4. If Presence Shorthand
+
+This might be trivial, but worth a mention. When doing “`if` checks”, assignment operators can sometimes be omitted.
+
+Longhand:
+
+```js
+if (likeJavaScript === true)
+```
+
+Shorthand:
+
+```js
+if (likeJavaScript)
+```
+
+>Note: these two examples are not exactly equal, as the shorthand check will pass as long as `likeJavaScript` is a [truthy value](https://developer.mozilla.org/en-US/docs/Glossary/Truthy).
+
+Here is another example. If `a` is NOT equal to true, then do something.
+
+Longhand:
+
+```js
+let a;
+if ( a !== true ) {
+// do something...
+}
+```
+
+Shorthand:
+
+```js
+let a;
+if ( !a ) {
+// do something...
+}
+```
+
