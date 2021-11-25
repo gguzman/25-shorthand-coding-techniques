@@ -113,3 +113,44 @@ if ( !a ) {
 }
 ```
 
+## 5. JavaScript For Loop Shorthand
+
+This little tip is really useful if you want plain JavaScript and don’t want to rely on external libraries such as jQuery or lodash.
+
+Longhand:
+
+```js
+const fruits = ['mango', 'peach', 'banana'];
+for (let i = 0; i < fruits.length; i++)
+```
+
+Shorthand:
+
+```js
+for (let fruit of fruits)
+```
+
+If you just wanted to access the index, do:
+
+```js
+for (let index in fruits)
+```
+
+This also works if you want to access keys in a literal object:
+
+```js
+const obj = {continent: 'Africa', country: 'Kenya', city: 'Nairobi'}
+for (let key in obj)
+  console.log(key) // output: continent, country, city
+```
+
+Shorthand for Array.forEach:
+```js
+function logArrayElements(element, index, array) {
+  console.log("a[" + index + "] = " + element);
+}
+[2, 5, 9].forEach(logArrayElements);
+// a[0] = 2
+// a[1] = 5
+// a[2] = 9
+```
