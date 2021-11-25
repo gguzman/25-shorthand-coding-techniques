@@ -154,3 +154,23 @@ function logArrayElements(element, index, array) {
 // a[1] = 5
 // a[2] = 9
 ```
+
+## 6. Short-circuit Evaluation
+Instead of writing six lines of code to assign a default value if the intended parameter is null or undefined, we can simply use a short-circuit logical operator and accomplish the same thing with just one line of code.
+
+Longhand:
+
+```js
+let dbHost;
+if (process.env.DB_HOST) {
+  dbHost = process.env.DB_HOST;
+} else {
+  dbHost = 'localhost';
+}
+```
+
+Shorthand:
+
+```js
+const dbHost = process.env.DB_HOST || 'localhost';
+```
