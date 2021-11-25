@@ -243,3 +243,48 @@ list.forEach(item => console.log(item));
 ```
 
 It’s important to note that the value of `this` inside an arrow function is determined differently than for longhand functions, so the two examples are not strictly equivalent. See [this article on arrow function syntax](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/) for more details.
+
+
+## 10. Implicit Return Shorthand
+Return is a keyword we use often to return the final result of a function. An arrow function with a single statement will implicitly return the result its evaluation (the function must omit the braces (`{}`) in order to omit the return keyword).
+
+To return a multi-line statement (such as an object literal), it’s necessary to use `()` instead of `{}` to wrap your function body. This ensures the code is evaluated as a single statement.
+
+Longhand:
+
+```js
+function calcCircumference(diameter) {
+  return Math.PI * diameter
+}
+```
+
+Shorthand:
+
+```js
+calcCircumference = diameter => (
+  Math.PI * diameter;
+)
+```
+
+## 11. Default Parameter Values
+You can use the `if` statement to define default values for function parameters. In ES6, you can define the default values in the function declaration itself.
+
+Longhand:
+
+```js
+function volume(l, w, h) {
+  if (w === undefined)
+    w = 3;
+  if (h === undefined)
+    h = 4;
+  return l * w * h;
+}
+```
+
+Shorthand:
+
+```js
+volume = (l, w = 3, h = 4 ) => (l * w * h);
+
+volume(2) //output: 24
+```
